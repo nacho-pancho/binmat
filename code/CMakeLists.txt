@@ -27,8 +27,14 @@ set(EXTLIB "-lm -lgsl")
 set (CMAKE_CXX_FLAGS_DEBUG     "${CMAKE_CXX_FLAGS} -Wall -Wextra -DDEBUG -g -O0 -fno-omit-frame-pointer"  )
 set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -O3")
 
-file(GLOB LIBSRC . binmat/bm_*.cpp)
+file(GLOB LIBSRC . lib/bm_*.cpp)
+
 add_library(binmat ${LIBSRC})
+
+include_directories(
+  ${PROJECT_SOURCE_DIR}/lib
+)
+
 add_custom_command(
   TARGET binmat 
   POST_BUILD 
@@ -36,4 +42,4 @@ add_custom_command(
 
 include_directories( ${PROJECT_SOURCE_DIR}/binmat )
 
-#add_subdirectory(tools)
+add_subdirectory(tools)
